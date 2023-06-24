@@ -7,13 +7,58 @@ use Illuminate\Http\Request;
 use App\Models\Bike;
 use Illuminate\Database\Eloquent\Collection;
 
+use OpenApi\Annotations as OA;
+
 class BikeController extends Controller
 {
+
+    /**
+     * @OA\Schema(
+     *     schema="Bike",
+     *     title="Bike",
+     *     description="Data about a singular store in the `bikes` table",
+     *     @OA\Property(property="id", type="integer"),
+     *     @OA\Property(property="brand_name", type="string"),
+     *     @OA\Property(property="model", type="string"),
+     *     @OA\Property(property="year_of_release", type="integer"),
+     *     @OA\Property(property="units_sold", type="integer"),
+     *     @OA\Property(property="created_at", type="string", format="date-time"),
+     *     @OA\Property(property="updated_at", type="string", format="date-time", nullable=true)
+     * )
+     */
 
     public function __construct()
     {
         $this->middleware('auth:api');
     }
+
+    /**
+     * Fetches all records from the `bikes` table
+     *
+     * @OA\Get(
+     *     path="/bike",
+     *     tags={"Bike"},
+     *     operationId="allBikes",
+     *     security={
+     *      {"bearerAuth": {}}
+     *     },
+     *     @OA\Response(
+     *         response="401",
+     *         description="Unauthorized",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="Unauthorized")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="Successful response",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/Bike")
+     *         )
+     *     )
+     * )
+     */
 
     public function allBikes(): Collection
     {
@@ -21,44 +66,51 @@ class BikeController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Fetches a record from the `bikes` table by its Id
+     *
+     * @OA\Get(
+     *     path="/bike/{id}",
+     *     tags={"Bike"},
+     *     operationId="bikeById",
+     *     security={
+     *      {"bearerAuth": {}}
+     *     },
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id of the bike to be fetched",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="401",
+     *         description="Unauthorized",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="Unauthorized")
+     *         )
+     *     ), 
+     *     @OA\Response(
+     *         response="404",
+     *         description="This bike does not exist",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="bike not found")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="Successful response",
+     *         @OA\JsonContent(ref="#/components/schemas/Bike")
+     *     )
+     * )
      */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     */
     public function bikeById(string $id): Bike | JsonResponse
     {
         return Bike::find($id) ?? response()->json([
             'error' => 'bike not found'
         ], 404);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }
