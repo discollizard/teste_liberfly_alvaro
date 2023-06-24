@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BikeController;
 use OpenApi\Annotations as OA;
 use OpenApi\Info;
 
@@ -31,18 +32,24 @@ use OpenApi\Info;
 // });
 
 Route::get('api/documentation', '\L5Swagger\Http\Controllers\SwaggerController@api')->name('l5-swagger.api');
+Route::post('auth/login', [AuthController::class, 'login']);
 
 Route::group([
-
     'middleware' => 'api',
-    'prefix' => 'auth'
-
 ], function ($router) {
 
-    Route::post('login', [AuthController::class, 'login']);
-    Route::post('logout', [AuthController::class, 'logout']);
-    Route::post('refresh', [AuthController::class, 'refresh']);
-    Route::post('me', [AuthController::class, 'me']);
+    //Auth
+    Route::group(['prefix' => 'auth'], function(){
+        Route::post('logout', [AuthController::class, 'logout']);
+        Route::post('refresh', [AuthController::class, 'refresh']);
+        Route::post('me', [AuthController::class, 'me']);
+    });
+
+    //Bikes
+    Route::group(['prefix' => 'bike'], function(){
+        Route::get('', [BikeController::class, 'allBikes']);
+        Route::get('{id}', [BikeController::class, 'bikeById']);
+    });
 
 });
 

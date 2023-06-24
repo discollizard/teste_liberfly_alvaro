@@ -9,4 +9,5 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class Bike extends Model
 {
     use HasFactory;
+    protected $table = "bikes";
 }

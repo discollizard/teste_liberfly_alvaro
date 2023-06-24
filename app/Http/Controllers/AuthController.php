@@ -18,7 +18,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Login to retrieve JWT bearer token
+     * Retrieves JWT to authenticate further requests.
      *
      * @OA\Post(
      *     path="/auth/login",
