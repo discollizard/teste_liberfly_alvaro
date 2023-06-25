@@ -20,7 +20,7 @@ O projeto é feito em PHP 8.1 (o projeto foi feito utilizando XAMPP), então cer
        composer install
     ```
  - Copie o arquivo .env.example e renomeie a cópia para .env; 
- - Confira as suas variáveis de ambiente (.env) no seu local;
+ - Confira as suas variáveis de ambiente (.env) no seu local, especialmente as que tangem a conexão com o banco de dados;
  - Rode as migrações e popule o banco de dados:
  ```
     php artisan migrate --seed
