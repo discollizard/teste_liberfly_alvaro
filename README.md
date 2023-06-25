@@ -48,4 +48,17 @@ O projeto é feito em PHP 8.1 (o projeto foi feito utilizando XAMPP), então cer
  Foram criados alguns arquivos para organizar as diretivas do Swagger e ajudar a manter o código mais limpo. Neles contem coisas como schemas e security schemes.
  Eles podem ser encontrados na pasta `app/Documentation`. As demais diretivas se encontram nos respectivos controllers.
 
+## Notas do candidato
+ Como no teste só explicitava endpoints para leitura do banco, tomei a liberdade de criar seeders para que, no momento que o examinador rode as instruções de instalação citadas acima, já existam registros prontos para serem examinados. Pensei em criar endpoints para cadastrar, editar e excluir, mas preferi me ater ao que as instruções mandavam.
+
+ Por causa da ausência de um endpoint de criação de usuário, existe um usuário próprio para logar neste caso. as credenciais dele são:
+ ```
+    email: testealvaro@liberfly.com
+    senha: password
+ ```
+
+ Os detalhes dos seeders se encontram na pasta `databse/seeders`.
+
+ 
+
 
