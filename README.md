@@ -1,7 +1,7 @@
 ## Teste LiberFly
 
 Neste repositório está contido a resolução do teste backend passado pela LiberFly que foi realizado no dia 24/06/2023 por Álvaro Coslovsky.
-Sobre os requisitos cumpridos, esse repositório apresenta:
+Sobre os requisitos cumpridos, este repositório apresenta:
 
 - :white_check_mark: API RESTful feita em PHP e Laravel;
 - :white_check_mark: Utiliza o banco de dados MySQL;
@@ -19,44 +19,33 @@ O projeto é feito em PHP 8.1, então certifique-se que esteja usando essa vers�
     ```
        composer install
     ```
+ - Copie o arquivo .env.example e renomeie a cópia para .env; 
+ - Confira as suas variáveis de ambiente (.env) no seu local;
+ - Rode as migrações e popule o banco de dados:
+ ```
+    php artisan migrate --seed
+ ```
+ - Gere a chave JWT da aplicação:
+ ```
+    php artisan jwt:secret
+ ```
+ - Rode o servidor da aplicação
+ ```
+    php artisan serve
+ ```
+
+ Pronto! Agora basta escolher seu cliente HTTP e começar a fazer requisições.
+
+## Rodando os testes
+ Os testes foram escritos com a própria ferramenta do PHPUnit que o Laravel disponibiliza. Para rodá-los basta executar o seguinte comando:
+ ```
+    php artisan test
+ ```
+ Se deseja examinar como foram escritos, eles se encontram na pasta `tests/Feature`.
+
+## Documentação da API
+ Todos os endpoints da API, tal como seus parâmetros e schemas de suas possíveis respostas se encontram na documentação da API. A mesma foi feita utilizando Swagger, e pode ser acessada através do endpoint `api/documentation`.
+ Foram criados alguns arquivos para organizar as diretivas do Swagger e ajudar a manter o código mais limpo. Neles contem coisas como schemas e security schemes.
+ Eles podem ser encontrados na pasta `app/Documentation`. As demais diretivas se encontram nos respectivos controllers.
 
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
