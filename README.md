@@ -12,7 +12,7 @@ Sobre os requisitos cumpridos, este repositório apresenta:
 
 ## Rodando o projeto
 
-O projeto é feito em PHP 8.1, então certifique-se que esteja usando essa versão.
+O projeto é feito em PHP 8.1 (o projeto foi feito utilizando XAMPP), então certifique-se que esteja usando essa versão.
 
  - Clone o repositório;
  - Instale suas dependências:
